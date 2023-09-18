@@ -4,8 +4,11 @@ from model_view_controller.adapters.presenters.shot import Shot
 
 class ShotListView(QtWidgets.QListWidget):
 
-    def __init__(self):
+    selected_shot = None
+
+    def __init__(self, controller):
         super(ShotListView, self).__init__()
+        self._controller = controller
         list_of_presenters = list()
         shot_a = Shot()
         shot_b = Shot()
@@ -25,10 +28,11 @@ class ShotListView(QtWidgets.QListWidget):
             item.setFont(font)
             self.addItem(item)
 
+        self.itemClicked.connect(self.clicked)
+
     def clicked(self, item):
         shot = item.data(QtCore.Qt.UserRole)
-        print(shot)
-        QtWidgets.QMessageBox.information(self, "Shot Information",
-                                "title: {} \ndescription: {}".format(shot.title, shot.description))
+        self.selected_shot = shot
+        self._controller.raise_selection_change(shot)
 
 
