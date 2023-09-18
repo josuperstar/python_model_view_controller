@@ -26,7 +26,6 @@ class TaskListView(AbstractView):
             item.setFont(font)
             self._widget.addItem(item)
 
-
     def get_widget(self):
         return self._widget
 
