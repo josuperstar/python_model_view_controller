@@ -18,12 +18,12 @@ class Controller(object):
         list_of_business_entities = list_shots.execute()
 
         for entity in list_of_business_entities:
-            shot_presenter = self.shot_presenter_convesrion(entity)
+            shot_presenter = self.shot_presenter_conversion(entity)
             list_of_presenters.append(shot_presenter)
 
         return list_of_presenters
 
-    def shot_presenter_convesrion(self, shot):
+    def shot_presenter_conversion(self, shot):
         shot_presenter = ShotPresenter()
         shot_presenter.title = shot.title
         shot_tasks = shot.tasks
@@ -31,7 +31,6 @@ class Controller(object):
         for task in shot_tasks:
             task_presenter = self.task_presenter_conversion(task)
             task_presenter_list.append(task_presenter)
-            print("{} - {}".format(task.name, task_presenter.name))
         shot_presenter.tasks = task_presenter_list
         shot_presenter.status = shot.status
         shot_presenter.description = shot.description
