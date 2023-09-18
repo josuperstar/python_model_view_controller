@@ -11,9 +11,11 @@ class ShotListView(QtWidgets.QListWidget):
         self._controller = controller
         list_of_presenters = list()
         shot_a = Shot()
+        shot_a.status = 'need vacations'
         shot_b = Shot()
         shot_b.title = 'test 2'
         shot_b.title_color = 'green'
+        shot_b.description = 'this shot is top notch'
         list_of_presenters.append(shot_a)
         list_of_presenters.append(shot_b)
 
