@@ -5,8 +5,8 @@ from model_view_controller.adapters.abstract_view import AbstractView
 
 class ShotListView(AbstractView):
 
-    def __init__(self, controller):
-        super(ShotListView, self).__init__(controller)
+    def __init__(self, controller, name):
+        super(ShotListView, self).__init__(controller, name)
         self._widget = QtWidgets.QListWidget()
 
         list_of_presenters = controller.get_list_of_shot()
@@ -32,6 +32,6 @@ class ShotListView(AbstractView):
 
     def clicked(self, item):
         shot = item.data(QtCore.Qt.UserRole)
-        self._controller.raise_selection_change(shot)
+        self._controller.raise_selection_change(self, shot)
 
 

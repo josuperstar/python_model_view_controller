@@ -16,9 +16,9 @@ class QtShotApplication(object):
 
         controller = Controller()
 
-        shot_list_view = ShotListView(controller)
-        status_view = TaskListView(controller)
-        property_view = PropertyView(controller)
+        shot_list_view = ShotListView(controller, 'shot_list')
+        status_view = TaskListView(controller, 'task_list')
+        property_view = PropertyView(controller, 'properties')
 
         controller.add_view(status_view)
         controller.add_view(property_view)
@@ -26,8 +26,8 @@ class QtShotApplication(object):
         window.setWindowTitle('MVC Example')
 
         application_layout.addWidget(shot_list_view.get_widget())
-        application_layout.addWidget(property_view.get_widget())
         application_layout.addWidget(status_view.get_widget())
+        application_layout.addWidget(property_view.get_widget())
 
         window.show()
 

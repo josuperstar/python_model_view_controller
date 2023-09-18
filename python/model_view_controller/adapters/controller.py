@@ -43,6 +43,7 @@ class Controller(object):
 
         return list_of_presenters
 
-    def raise_selection_change(self, selection):
+    def raise_selection_change(self, view_caller, selection):
         for view in self._views:
-            view.update_view(selection)
+            if view.name != view_caller.name:
+                view.update_view(selection)

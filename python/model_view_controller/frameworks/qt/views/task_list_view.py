@@ -4,9 +4,10 @@ from model_view_controller.adapters.abstract_view import AbstractView
 
 class TaskListView(AbstractView):
 
-    def __init__(self, controller):
-        super(TaskListView, self).__init__(controller)
+    def __init__(self, controller, name):
+        super(TaskListView, self).__init__(controller, name)
         self._widget = QtWidgets.QListWidget()
+        self._widget.itemClicked.connect(self.clicked)
 
     def update_view(self, shot):
 
@@ -25,9 +26,13 @@ class TaskListView(AbstractView):
             item.setFont(font)
             self._widget.addItem(item)
 
+
     def get_widget(self):
         return self._widget
 
+    def clicked(self, item):
+        shot = item.data(QtCore.Qt.UserRole)
+        self._controller.raise_selection_change(self, shot)
 
 
 
