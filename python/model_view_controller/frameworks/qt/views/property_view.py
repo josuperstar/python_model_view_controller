@@ -56,6 +56,8 @@ class PropertyView(AbstractView):
         return self._widget
 
     def clicked(self, item):
+        if not self._controller:
+            raise Exception('Controller has not been set')
         shot = item.data(QtCore.Qt.UserRole)
         self._controller.raise_selection_change(self, shot)
 
