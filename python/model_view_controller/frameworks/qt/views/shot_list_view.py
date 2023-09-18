@@ -1,5 +1,5 @@
 from PySide2 import QtGui, QtCore, QtWidgets
-from model_view_controller.adapters.presenters.shot import Shot
+
 from model_view_controller.adapters.abstract_view import AbstractView
 
 
@@ -9,15 +9,7 @@ class ShotListView(AbstractView):
         super(ShotListView, self).__init__(controller)
         self._widget = QtWidgets.QListWidget()
 
-        list_of_presenters = list()
-        shot_a = Shot()
-        shot_a.status = 'need vacations'
-        shot_b = Shot()
-        shot_b.title = 'test 2'
-        shot_b.title_color = 'green'
-        shot_b.description = 'this shot is top notch'
-        list_of_presenters.append(shot_a)
-        list_of_presenters.append(shot_b)
+        list_of_presenters = controller.get_list_of_shot()
 
         font = QtGui.QFont('arial')
 

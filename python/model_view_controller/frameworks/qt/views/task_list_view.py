@@ -1,0 +1,34 @@
+from PySide2 import QtGui, QtCore, QtWidgets
+from model_view_controller.adapters.abstract_view import AbstractView
+
+
+class TaskListView(AbstractView):
+
+    def __init__(self, controller):
+        super(TaskListView, self).__init__(controller)
+        self._widget = QtWidgets.QListWidget()
+
+    def update_view(self, shot):
+
+        font = QtGui.QFont('arial')
+
+        self._widget.resize(400, 320)
+        self._widget.clear()
+
+        print('display tasks for shot {}'.format(shot.title))
+
+        for task in shot.tasks:
+            print('task {}'.format(task.name))
+            item = QtWidgets.QListWidgetItem(task.name)
+            item.setData(QtCore.Qt.UserRole, task)
+            font.setPointSize(15)
+            item.setFont(font)
+            self._widget.addItem(item)
+
+    def get_widget(self):
+        return self._widget
+
+
+
+
+

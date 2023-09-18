@@ -29,8 +29,14 @@ class PropertyView(AbstractView):
         item.setFont(font)
         self._widget.addItem(item)
 
+        #self._widget.itemClicked.connect(self.clicked)
+
     def get_widget(self):
         return self._widget
+
+    def clicked(self, item):
+        shot = item.data(QtCore.Qt.UserRole)
+        self._controller.raise_selection_change(shot)
 
 
 

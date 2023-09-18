@@ -5,7 +5,7 @@ from model_view_controller.adapters.controller import Controller
 
 from model_view_controller.frameworks.qt.views.shot_list_view import ShotListView
 from model_view_controller.frameworks.qt.views.property_view import PropertyView
-from model_view_controller.frameworks.qt.views.status_view import StatusView
+from model_view_controller.frameworks.qt.views.task_list_view import TaskListView
 
 
 class QtShotApplication(object):
@@ -17,7 +17,7 @@ class QtShotApplication(object):
         controller = Controller()
 
         shot_list_view = ShotListView(controller)
-        status_view = StatusView(controller)
+        status_view = TaskListView(controller)
         property_view = PropertyView(controller)
 
         controller.add_view(status_view)
