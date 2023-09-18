@@ -1,10 +1,7 @@
-from model_view_controller.adapters.presenters.task import Task
+from model_view_controller.business_entities.shot import Shot
 
-class Shot(object):
+
+class ShotPresenter(Shot):
     def __init__(self):
-        self.status = 'all good'
-        self.title = 'test'
+        super(ShotPresenter, self).__init__()
         self.title_color = 'red'
-        self.description = 'blablabla'
-
-        self.tasks = list()
