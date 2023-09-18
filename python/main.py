@@ -1,33 +1,24 @@
-# dialog.py
-
-"""Dialog-style application."""
-
 import sys
-
 from PySide2 import QtGui, QtCore, QtWidgets
 
-class Window(QtWidgets.QDialog):
+from model_view_controller.frameworks.qt.views.shot_list_view import ShotListView
+
+
+class QtShotApplication(object):
     def __init__(self):
-        super().__init__(parent=None)
-        self.setWindowTitle("QDialog")
-        dialogLayout = QtWidgets.QVBoxLayout()
-        formLayout = QtWidgets.QFormLayout()
-        formLayout.addRow("Name:", QtWidgets.QLineEdit())
-        formLayout.addRow("Age:", QtWidgets.QLineEdit())
-        formLayout.addRow("Job:", QtWidgets.QLineEdit())
-        formLayout.addRow("Hobbies:", QtWidgets.QLineEdit())
-        dialogLayout.addLayout(formLayout)
-        buttons = QtWidgets.QDialogButtonBox()
-        buttons.setStandardButtons(
-            QtWidgets.QDialogButtonBox.StandardButton.Cancel
-            | QtWidgets.QDialogButtonBox.StandardButton.Ok
-        )
-        dialogLayout.addWidget(buttons)
-        self.setLayout(dialogLayout)
+        app = QtWidgets.QApplication(sys.argv)
+        
+        shot_list_view = ShotListView()
 
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication([])
-    window = Window()
-    window.show()
-    sys.exit(app.exec_())
+
+        shot_list_view.setWindowTitle('QListwidget Example')
+        shot_list_view.itemClicked.connect(shot_list_view.clicked)
+
+        shot_list_view.show()
+        sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+
+    qt_application = QtShotApplication()
